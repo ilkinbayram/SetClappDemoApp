@@ -1,0 +1,164 @@
+﻿@using Core.Extensions;
+@using Core.Resources.Enum;
+@using SetClappDemoApp.MVC.Models.ComponentViewModels;
+@model CreateRequestViewModel
+
+
+@if (Model.ActiveUser.UserType == UserType.Worker)
+{
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="pt-4 pb-4">
+                    <button class="btn btn-lg btn-lg-primary btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#workerRequestPanelModal">
+                        Yeni Tələb Yarat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    @using (Html.BeginForm())
+        {
+                @Html.AntiForgeryToken()
+
+        <div class="modal fade" id="workerRequestPanelModal" tabindex="-1" aria-labelledby="workerRequestPanelModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <label for="validationCustom01" class="m-1">İşçinin Adı</label>
+                                                    <input type="text" readonly value="@Model.ActiveUser.FirstName"
+                                                   class="form-control user-holder"
+                                                   placeholder="Ad" />
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <label for="validationCustom01" class="m-1">İşçinin Soyadı</label>
+                                                    <input type="text" readonly value="@Model.ActiveUser.LastName"
+                                                   class="form-control user-holder"
+                                                   placeholder="Soyad" />
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <label for="validationCustom01" class="m-1">İşçinin Ata adı</label>
+                                                    <input type="text" readonly value="@Model.ActiveUser.FatherName"
+                                                   class="form-control user-holder"
+                                                   placeholder="Ata adı" />
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <label for="validationCustom01" class="m-1">İşçinin Vəzifəsi</label>
+                                                    <input type="text" readonly value="@Model.ActiveUser.Position"
+                                                   class="form-control user-holder"
+                                                   placeholder="Vəzifəsi" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                                    <label for="validationCustom01" class="m-1">Müraciətin Başlama Tarixi</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-primary text-light">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                        </span>
+                                                        <input autocomplete="off" type="text"
+                                                       class="form-control"
+                                                       name="StartFrom"
+                                                       placeholder="Tarix sec"
+                                                       id="datepickerStartFrom"
+                                                       data_toggle="datepicker"
+                                                       data-toggledate="datepicker" />
+                                                        <span class="input-group-text bg-primary text-light">Başlama Tarixi</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                                    <label for="validationCustom01" class="m-1">Müraciətin Bitmə Tarixi</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-primary text-light">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                        </span>
+                                                        <input autocomplete="off" type="text"
+                                                       class="form-control"
+                                                       name="FinishDate"
+                                                       placeholder="Tarix sec"
+                                                       id="datepickerFinish"
+                                                       data_toggle="datepicker"
+                                                       data-toggledate="datepicker" />
+                                                        <span class="input-group-text bg-primary text-light">Bitmə Tarixi</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                                    <label for="validationCustom01" class="m-1">Müraciətin növü</label>
+                                                    <select class="form-select"
+                                                    aria-label="Default select example" id="requestTypeIdentifier" name="RequestType">
+                                                        @foreach (var type in Enum.GetValues(typeof(RequestType)).Cast<RequestType>())
+                                                        {
+                                                            <option value="@((int)type)">@($"{type.Translate()}")</option>
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                                    <label for="validationCustom01" class="m-1">Əvəz Edən Şəxs</label>
+                                                    <select class="form-select"
+                                                    aria-label="Default select example" id="replacerRequestId" name="ReplacerUserId">
+                                                        @foreach (var worker in Model.ExistWorkers)
+                                                        {
+                                                            <option value="@worker.Id">@($"{worker.FirstName} {worker.LastName} / {worker.Position}")</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                                    <label for="validationCustom01" class="m-1">Əlavə Qeydiniz:</label>
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control" name="AdditionalDescription"
+                                                          placeholder="Leave a comment here"
+                                                          id="additionalNoteArea"></textarea>
+                                                        <label for="additionalNoteArea">Bu bölmə məcburi deyil...</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="closeCreateRequestModal" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                        <button type="button" id="createCreateRequestModal" class="btn btn-primary" data-bs-dismiss="modal">Yarat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+}

@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Təsdiqləmə Səhifəsi";
+    Layout = "_LayoutEmpty";
+}
+
+
+<div class="container pt-5 ps-4 pe-4">
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <p>
+                E-Mailinizə təsdiqləmə kodu göndərilmişdir. Zəhmət olmasa kodu kopyalayıb boş xanaya yapışdırın və hesabınızı təsdiqləyin.
+            </p>
+            @using (Html.BeginForm("confirm", "auth", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">Təsdiqləmə Kodu</span>
+                    <input type="text" name="securityToken" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Kodu daxil edin...">
+                    <button class="btn btn-outline-success" type="submit" id="inputGroupFileAddon04">Təsdiqləyin</button>
+                </div>
+
+            }
+        </div>
+
+    </div>
+
+</div>

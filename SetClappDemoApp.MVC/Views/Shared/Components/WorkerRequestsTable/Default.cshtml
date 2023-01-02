@@ -1,0 +1,136 @@
+﻿@using Core.Extensions;
+@using Core.Resources.Enum;
+@model List<SetClappDemoApp.MVC.Models.ComponentViewModels.UserWorkerRequestViewModel>
+
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nomre</th>
+                <th scope="col">Ad Soyad</th>
+                <th scope="col">Vezife</th>
+                <th scope="col">Status</th>
+                <th scope="col">Yaranma Tarixi</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <th scope="row">@(i + 1)</th>
+                    <td>@Model[i].DocumentNumber</td>
+                    <td>@Model[i].FullName</td>
+                    <td>@Model[i].Position</td>
+                    <td>@Model[i].Status.Translate()</td>
+                    <td>@Model[i].CreatedDate.Date.ToShortDateString()</td>
+                    <td><button type="button" class="btn btn-info details-show-button" data-requestid="@(Model[i].WorkerRequestId)" data-bs-toggle="modal" data-bs-target="#showRequestDetail">Görüntülə</button></td>
+                    <td>
+                        @if (Model[i].Status == RequestStatus.Approved)
+                        {
+                            <button data-reqid="@(Model[i].WorkerRequestId)" class="btn pdf-print btn-warning">PDF Çap</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="showRequestDetail" tabindex="-1" aria-labelledby="showRequestDetailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4><span id="requestStatusDetail">Məzuniyyət Müraciəti</span></h4>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4><span id="requestNumber">No: Q-22-12-0012</span></h4>
+                        </div>
+                        <hr>
+                        <div class="col-12 col-sm-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4">
+                                    <h6 class="mb-2">Muraciet eden emekdas</h6>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Adı:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestOwnerFirstName">Ilkin</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Soyadı:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestOwnerLastName">Bayramov</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Ata adı:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestOwnerFatherName">Asraf</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Vəzifəsi:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestOwnerPosition">Proqramist</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4">
+                                    <h6 class="mb-2">Evez edecek emekdas</h6>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Adı:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestReplacerFirstName">Ilkin</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Soyadı:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestReplacerLastName">Bayramov</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Ata adı:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestReplacerFatherName">Asraf</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4">
+                                    <h6 class="mb-2">Müraciət tarix aralığı</h6>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Başlama tarixi:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestStartDate">05.03.2023</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-3 col-lg-2"><strong>Bitmə tarixi:&nbsp;</strong></div>
+                                        <div class="col-sm-8 col-md-9 col-lg-10"><span id="requestFinishDate">07.09.2023</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4">
+                                    <h6 class="mb-2">Qeyd:</h6>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <p id="requestAdditionalNote">
+                                                
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeCreateRequestModal" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                @await Component.InvokeAsync("RequestCommandButtons")
+                <span id="detailrequestbtns"></span>
+            </div>
+        </div>
+    </div>
+</div>
+

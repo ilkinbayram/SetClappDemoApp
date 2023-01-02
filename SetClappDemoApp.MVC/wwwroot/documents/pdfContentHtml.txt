@@ -1,0 +1,49 @@
+﻿<div>
+        <table style="border: 2px solid gray; width: 100%; padding: 10px; font-size: 1.5em;">
+            <thead style="border: 2px solid gray; box-shadow: inset 1px 1px 12px;">
+                <tr style="border: 2px solid gray;">
+                    <th colspan="4" style="text-align: center; font-weight: bold; border: 1px solid gray; padding-top: 15px; padding-bottom: 10px;">
+                        [[RequestType]]
+                    </th>
+                    <th colspan="4" style="text-align: center; font-weight: bold;  border: 1px solid gray;padding-top: 15px; padding-bottom: 10px;">
+                        Müqavilə Nömrəsi - [[DocumentNumber]]
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Adı: &nbsp; [[FirstName]]
+                    </th>
+                    <th colspan="2" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Soyadı: &nbsp; [[LastName]]
+                    </th>
+                    <th colspan="2" style="font-weight: bold; border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Ata adı: &nbsp; [[FatherName]]
+                    </th>
+                    <th colspan="2" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Vəzifə: &nbsp; [[Position]]
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Əvəzləyici: &nbsp; [[ReplacerFirstName]] [[ReplacerLastName]]
+                    </th>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Əvəzləyicinin ata adı: &nbsp; [[ReplacerFatherName]]
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Başlama Tarixi: &nbsp; [[StartFrom]]
+                    </th>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Bitmə Tarixi: &nbsp; [[FinishDate]]
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="8" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        <span style="text-decoration: underline;">Müraciət edənin qeydi:</span> &nbsp; [[AdditionalDescription]]
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@await Component.InvokeAsync("CreateRequestButton")
+@await Component.InvokeAsync("WorkerRequestsTable")
+
+
+
+
+@section CreateRequestPageScripts{
+
+            <!-- Date Picker JQuery-UI Css  v1.13.2 JS
+        ============================================-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+                <!-- Date Picker JQuery-UI JS  v1.13.2 JS
+        ============================================-->
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+        <link rel="stylesheet" href="/css/createRequestPageModal.css" />
+
+        <!-- Font Awesome Kit
+        ============================================-->
+        <script
+      src="https://kit.fontawesome.com/8d2a2067a9.js"
+      crossorigin="anonymous"
+    ></script>
+
+        <script src="/js/datepickerCustomJs.js"></script>
+        <script src="/js/createRequestPageDynamic.js"></script>
+}

@@ -1,0 +1,70 @@
+﻿@using Core.Entities.Concrete
+@model List<User>
+@{
+    ViewData["Title"] = "Hesab Prosedurları";
+    Layout = "_LayoutEmpty";
+}
+
+
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <h1>Yeni hesab yarat</h1>
+            <input type="text" id="registerFirstName" name="FirstName" placeholder="Ad" />
+            <input type="text" id="registerLastName" name="LastName" placeholder="Soyad" />
+            <input type="text" id="registerFatherName" name="FatherName" placeholder="Ata adı" />
+            <input type="text" id="registerPosition" name="Position" placeholder="Vəzifə" />
+            <input type="email" id="registerEmail" name="Email" placeholder="E-Mail" />
+            <input type="text" id="registerUsername" name="Username" placeholder="İstifadəçi adı" />
+            <input type="password" id="registerPassword" name="Password" placeholder="Açar söz" />
+            <select class="dontshow" id="chiefSelection" name="ChiefId">
+                <option selected value="0">Rəhbərinizi seçin</option>
+                @foreach (var chief in Model)
+                {
+                    <option value="@chief.Id">@($"{chief.FirstName} {chief.LastName}")</option>
+                }
+            </select>
+            <div class="radio-straight">
+                <input type="radio" class="radio-straight" name="UserType" value="1"><span class="inline-content-center">Əməkdaş</span>
+                <input type="radio" class="radio-straight" name="UserType" value="2"><span class="inline-content-center">Rəhbər</span>
+                <input type="radio" class="radio-straight" name="UserType" value="3"><span class="inline-content-center">HR</span>
+            </div>
+            <button id="createaccountbtn" type="button">Yeni hesab yarat</button>
+
+            }
+    </div>
+    <div class="form-container sign-in-container">
+        @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <h1>Daxil ol</h1>
+            <input type="text" id="loginUsername" name="Username" placeholder="İstifadəçi adı" />
+            <input type="password" id="loginPassword" name="Password" placeholder="Açar söz" />
+            <a href="#">Açar sözü unutmusan ?</a>
+            <button id="loginbtn" type="button">Daxil ol</button>
+            }
+        
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Xoş gəldiniz!</h1>
+                <p>Bizimlə əlaqədə qalın və zəhmət olmasa giriş etmək üçün şəxsi məlumatlarınızı daxil edin.</p>
+                <button class="ghost" id="signIn">Daxil ol</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Sizi salamlayırıq!</h1>
+                <p>Şəxsi məlumatlarını daxil et və bizimlə səyahətə başla.</p>
+                <button class="ghost" id="signUp">Yeni hesab yarat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section AuthScript{
+    <link rel="stylesheet" href="/css/auth.css" />
+    <script src="/js/auth.js"></script>
+}

@@ -1,0 +1,14 @@
+﻿@using Core.Entities.Concrete;
+@using Core.Resources.Enum;
+@model User;
+
+
+@if (Model.UserType == UserType.Worker)
+{
+    <button type="button" id="sendRequest" class="btn btn-primary actionbtn" data-requestid="0" data-actioncommand="next" data-bs-dismiss="modal">Göndər</button>
+}
+else
+{
+    <button type="button" id="approveRequest" class="btn btn-success actionbtn" data-requestid="0" data-actioncommand="next" data-bs-dismiss="modal">Təsdiqlə</button>
+    <button type="button" id="declineRequest" class="btn btn-danger actionbtn" data-requestid="0" data-actioncommand="reject" data-bs-dismiss="modal">İmtina et</button>
+}

@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+
+<button class="btn btn-primary" id="btnPdf">Generate</button>
+
+<div id="pdfContainer">
+    <div>
+        <table style="border: 2px solid gray; width: 100%; padding: 10px; font-size: 1.5em;">
+            <thead style="border: 2px solid gray; box-shadow: inset 1px 1px 12px;">
+                <tr style="border: 2px solid gray;">
+                    <th colspan="4" style="text-align: center; font-weight: bold; border: 1px solid gray; padding-top: 15px; padding-bottom: 10px;">
+                        Musteri Mezuniyyeti
+                    </th>
+                    <th colspan="4" style="text-align: center; font-weight: bold;  border: 1px solid gray;padding-top: 15px; padding-bottom: 10px;">
+                        Nomre - Q-22-12-8745
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Ad: &nbsp; Ilkin
+                    </th>
+                    <th colspan="2" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Soyad: &nbsp; Bayramov
+                    </th>
+                    <th colspan="2" style="font-weight: bold; border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Ata adi: &nbsp; Esref
+                    </th>
+                    <th colspan="2" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Vezife: &nbsp; Developer
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Evezleyici: &nbsp; Elcin Qenberov
+                    </th>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Evezleyici Vezifesi: &nbsp; Developer
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Baslama Tarixi: &nbsp; 11.12.2022
+                    </th>
+                    <th colspan="4" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        Bitme Tarixi: &nbsp; 11.12.2022
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="8" style="font-weight: bold;  border: 1px solid gray; padding-top: 10px; padding-bottom: 15px;">
+                        <span style="text-decoration: underline;">Qeyd:</span> &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Perferendis alias accusamus molestias esse soluta,
+                        ratione ipsum, harum distinctio, temporibus quia rem necessitatibus provident.
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+     $("#btnPdf").click(function(e){
+        let html = $("#pdfContainer").html();
+
+        html = html.replace(/</g, 'StrTag').replace(/>/g, "EndTag");
+
+        let res = window.btoa(html);
+
+        console.log(res);
+
+        window.open("../Test/GeneratePdf?html=" + res, "_blank");
+     });
+</script>
