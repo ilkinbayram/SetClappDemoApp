@@ -1,4 +1,6 @@
-﻿using Core.Utilities.Security.Jwt;
+﻿using Core.Entities.Concrete;
+using Core.Resources.Enum;
+using Core.Utilities.Security.Jwt;
 using Microsoft.AspNetCore.Mvc;
 using Service.Business.Abstract;
 using SetClappDemoApp.MVC.Models.ComponentViewModels;
@@ -28,7 +30,13 @@ namespace SetClappDemoApp.MVC.ViewComponents
             var user = _userService.GetById(userId);
 
             var createdRequestsIds = _userWorkerRequestService.GetList(x => x.IsRequestOwner && x.UserId == userId).Data.Select(x=>x.RequestId).ToList();
-            var workerRequests = _workerRequestService.GetListWithRelations(x => x.AssignedWorkerId == userId || createdRequestsIds.Contains(x.Id)).Data;
+
+            List<WorkerRequest> workerRequests;
+
+            if(user.UserType == UserType.Worker) 
+                workerRequests = _workerRequestService.GetListWithRelations(x => createdRequestsIds.Contains(x.Id)).Data.ToList();
+            else 
+                workerRequests = _workerRequestService.GetListWithRelations(x=> x.AssignedWorkerId == userId).Data.ToList();
 
             foreach (var request in workerRequests)
             {

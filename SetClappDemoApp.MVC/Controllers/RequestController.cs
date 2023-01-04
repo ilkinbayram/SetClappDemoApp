@@ -90,7 +90,11 @@ namespace SetClappDemoApp.MVC.Controllers
         public async Task<IActionResult> Reject(int requestId)
         {
             var resultRequest = await _workerRequestService.GetAsync(x => x.Id == requestId);
-            resultRequest.Data.Status = RequestStatus.Declined;
+            if (resultRequest.Data.Status == RequestStatus.SentToManager)
+                resultRequest.Data.Status = RequestStatus.ManagerDeclined;
+            else
+                resultRequest.Data.Status = RequestStatus.Declined;
+
             resultRequest.Data.AssignedWorkerId = 0;
             var updateResult = await _workerRequestService.UpdateAsync(resultRequest.Data);
 

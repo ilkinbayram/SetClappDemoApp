@@ -13,6 +13,7 @@
 
             _cd.Add("New", "Yeni");
             _cd.Add("SentToManager", "Rəhbərə Göndərildi");
+            _cd.Add("ManagerDeclined", "Rəhbər Rədd Etdi");
             _cd.Add("SentToHr", "İnsan resurslarına göndərildi");
             _cd.Add("Approved", "Qeydə alındı");
             _cd.Add("Declined", "İmtina edildi");
