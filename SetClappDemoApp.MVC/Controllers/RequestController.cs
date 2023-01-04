@@ -91,6 +91,7 @@ namespace SetClappDemoApp.MVC.Controllers
         {
             var resultRequest = await _workerRequestService.GetAsync(x => x.Id == requestId);
             resultRequest.Data.Status = RequestStatus.Declined;
+            resultRequest.Data.AssignedWorkerId = 0;
             var updateResult = await _workerRequestService.UpdateAsync(resultRequest.Data);
 
             if (!updateResult.Success)

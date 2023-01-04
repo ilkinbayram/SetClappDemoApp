@@ -41,10 +41,6 @@ namespace Service.Business.Concrete
         [ExceptionLogAspect(typeof(FileLogger))]
         public async Task<IDataResult<int>> UpdateAndAssignAsync(WorkerRequest entity, int userId, SendgridEmailDto emailDto)
         {
-            int a = 0;
-            int b = 2;
-            int c = b / a;
-            // TODO : Message
             var existUser = await _userDal.GetAsync(x => x.Id == userId);
             var requests = await _workerRequestDal.GetAllAsync(x => x.Status >= RequestStatus.SentToHr);
             var hrWorkers = await _userDal.GetAllAsync(x => x.UserType == UserType.HR);
